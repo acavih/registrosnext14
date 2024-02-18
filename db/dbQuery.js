@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
-export default async function dbQuery(fn) {
+export default async function dbQuery(fn, debug) {
     await mongoose.connect(process.env.MONGODB_URI)
-    return JSON.parse(JSON.stringify(await fn()))
+    const result = await fn()
+    if (debug) {
+        console.log(debug, result)
+    }
+    return JSON.parse(JSON.stringify(result))
 }

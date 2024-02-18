@@ -1,11 +1,16 @@
 import dbQuery from '@/db/dbQuery';
-import Partner from '@/db/models/Partner';
+import Partner, { searchPartner } from '@/db/models/Partner';
+import PartnersPage from './PartnersPage';
 
-export default async function PartnersPage() {
+export default async function Page({searchParams: {s}}) {
     const partners = await dbQuery(async () => {
-        return await Partner.find({}).limit(20)
+        if (s) {
+            return await searchPartner(s)
+        } else {
+            return await Partner.find({}).limit(20)
+        }
     })
     return (
-        <PartnersPage partners={partners} />
+        <PartnersPage partners={partners} s={s} />
     )
 }

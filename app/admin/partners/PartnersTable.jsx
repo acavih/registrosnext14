@@ -1,14 +1,15 @@
 "use client"
-import { Table } from '@mantine/core';
+import { Button, Table } from '@mantine/core';
 
 export function PartnersTable({ partners }) {
-    return <Table>
+    return <Table striped highlightOnHover>
         <Table.Thead>
             <Table.Tr>
                 <Table.Th>Nombre</Table.Th>
                 <Table.Th>Apellidos</Table.Th>
                 <Table.Th>Correo electrónico</Table.Th>
                 <Table.Th>SIP</Table.Th>
+                <Table.Th>Acciones</Table.Th>
             </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
@@ -18,6 +19,9 @@ export function PartnersTable({ partners }) {
                     <Table.Td>{element.apellidos}</Table.Td>
                     <Table.Td>{element.correoelectronico}</Table.Td>
                     <Table.Td>{element.sipcard}</Table.Td>
+                    <Table.Td>
+                        <Button size='xs'>Ver socio</Button>
+                    </Table.Td>
                 </Table.Tr>
             ))}
         </Table.Tbody>
