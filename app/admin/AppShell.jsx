@@ -1,7 +1,7 @@
 "use client"
-import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
+import { Anchor, AppShell, Burger, Button, Group, NavLink, Skeleton } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-
+import Link from 'next/link'
 export function CollapseDesktop({children}) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
@@ -24,12 +24,7 @@ export function CollapseDesktop({children}) {
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">
-        Navbar
-        {Array(15)
-          .fill(0)
-          .map((_, index) => (
-            <Skeleton key={index} h={28} mt="sm" animate={false} />
-          ))}
+        <NavLink variant='filled' component={Link} href="/admin/partners" label="Socios" />
       </AppShell.Navbar>
       <AppShell.Main>
         {children}

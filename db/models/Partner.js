@@ -33,6 +33,9 @@ partnerSchema.virtual('edad')
 partnerSchema.set('toObject', { virtuals: true })
 partnerSchema.set('toJSON', { virtuals: true })
 
+/**
+ * @type {import('mongoose').Model}
+ */
 export const Partner = mongoose.models.members || mongoose.model('members', partnerSchema)
 
 export default Partner

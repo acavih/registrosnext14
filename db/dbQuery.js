@@ -1,3 +1,5 @@
+import './models/Partner'
+import './models/Resources'
 import mongoose from 'mongoose'
 
 export default async function dbQuery(fn, debug) {
@@ -6,5 +8,7 @@ export default async function dbQuery(fn, debug) {
     if (debug) {
         console.log(debug, result)
     }
-    return JSON.parse(JSON.stringify(result))
+    if (result) {
+        return JSON.parse(JSON.stringify(result))
+    }
 }
