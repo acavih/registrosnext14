@@ -1,5 +1,6 @@
 import './models/Partner'
 import './models/Resources'
+import './models/User'
 import mongoose from 'mongoose'
 
 export default async function dbQuery(fn, debug) {

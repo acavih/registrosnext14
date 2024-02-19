@@ -20,3 +20,11 @@ export const PUT = apiEndpoint(async (req, res) => {
     })
     return NextResponse.json({})
 })
+
+export const DELETE = apiEndpoint(async (req, res) => {
+    const partnerId = req.nextUrl.searchParams.get('partnerId')
+    await dbQuery(async () => {
+        await Partner.findByIdAndDelete(partnerId)
+    })
+    return NextResponse.json({})
+})

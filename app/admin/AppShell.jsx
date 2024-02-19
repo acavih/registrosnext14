@@ -2,6 +2,8 @@
 import { Anchor, AppShell, Burger, Button, Group, NavLink, Skeleton } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link'
+import LogoutButton from './LogoutButton'
+
 export function CollapseDesktop({children}) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
@@ -25,6 +27,7 @@ export function CollapseDesktop({children}) {
       </AppShell.Header>
       <AppShell.Navbar p="md">
         <NavLink variant='filled' component={Link} href="/admin/partners" label="Socios" />
+        <LogoutButton />
       </AppShell.Navbar>
       <AppShell.Main>
         {children}
