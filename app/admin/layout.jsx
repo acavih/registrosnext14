@@ -1,9 +1,9 @@
 import { getServerSession } from 'next-auth';
 import { CollapseDesktop } from './AppShell';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 import LoginButton from './LoginButton'
+import { authOptions } from '@/utils/authOptions';
 
-export default async function RootLayout({children, ...props}) {
+export default async function RootLayout({children}) {
   const session = await getServerSession(authOptions)
   if (!session) {
     return (
