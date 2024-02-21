@@ -3,6 +3,10 @@ import Partner from "@/db/models/Partner"
 import apiEndpoint from "@/utils/apiEndpoint"
 import { NextResponse } from "next/server"
 
+export const GET = apiEndpoint(() => {
+    return NextResponse.json({msg: 'holaaa'})
+})
+
 export const POST = apiEndpoint(async (req, res) => {
     const data = await req.json()
     const partner = await dbQuery(async () => {

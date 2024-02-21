@@ -27,6 +27,7 @@ export function CollapseDesktop({children}) {
       </AppShell.Header>
       <AppShell.Navbar p="md">
         <NavLink variant='filled' component={Link} href="/admin/partners" label="Socios" />
+        <NavLink variant='filled' component={Link} href="/admin/resources/nacionalidads" label="Recursos" />
         <LogoutButton />
       </AppShell.Navbar>
       <AppShell.Main>

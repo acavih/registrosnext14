@@ -5,23 +5,27 @@ import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from 'next/link';
 
 export function PartnersTable({ partners }) {
-    return <Table striped highlightOnHover>
-        <Table.Thead>
-            <Table.Tr>
-                <Table.Th></Table.Th>
-                <Table.Th>Nombre</Table.Th>
-                <Table.Th>Apellidos</Table.Th>
-                <Table.Th>Correo electrónico</Table.Th>
-                <Table.Th>SIP</Table.Th>
-                <Table.Th>Acciones</Table.Th>
-            </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-            {partners.map((element) => (
-                <PartnerRow key={element._id} element={element} />
-            ))}
-        </Table.Tbody>
-    </Table>;
+    return (
+        <Table.ScrollContainer>
+            <Table striped highlightOnHover>
+                <Table.Thead>
+                    <Table.Tr>
+                        <Table.Th></Table.Th>
+                        <Table.Th>Nombre</Table.Th>
+                        <Table.Th>Apellidos</Table.Th>
+                        <Table.Th>Correo electrónico</Table.Th>
+                        <Table.Th>SIP</Table.Th>
+                        <Table.Th>Acciones</Table.Th>
+                    </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                    {partners.map((element) => (
+                        <PartnerRow key={element._id} element={element} />
+                    ))}
+                </Table.Tbody>
+            </Table>
+        </Table.ScrollContainer>
+    )
 }
 
 function PartnerRow({ element }) {
