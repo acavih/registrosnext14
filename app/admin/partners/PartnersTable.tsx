@@ -1,12 +1,12 @@
 "use client"
-import { ActionIcon, Button, Table } from '@mantine/core';
+import { ActionIcon, Alert, Button, Indicator, Stack, Table } from '@mantine/core';
 import { useState } from 'react';
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from 'next/link';
 
 export function PartnersTable({ partners }) {
     return (
-        <Table.ScrollContainer>
+        <Table.ScrollContainer minWidth={''}>
             <Table striped highlightOnHover>
                 <Table.Thead>
                     <Table.Tr>
@@ -34,9 +34,11 @@ function PartnerRow({ element }) {
         <>
             <Table.Tr>
                 <Table.Td>
-                    <ActionIcon variant='transparent' onClick={() => setExpanded(!expanded)}>
-                        {expanded ? <IconChevronUp /> : <IconChevronDown />}
-                    </ActionIcon>
+                    {element.cosaspendientes || element.observaciones && <ActionIcon variant='transparent' onClick={() => setExpanded(!expanded)}>
+                        <Indicator color='red'>
+                            {expanded ? <IconChevronUp /> : <IconChevronDown />}
+                        </Indicator>
+                    </ActionIcon>}
                 </Table.Td>
                 <Table.Td>{element.nombre}</Table.Td>
                 <Table.Td>{element.apellidos}</Table.Td>
@@ -46,9 +48,16 @@ function PartnerRow({ element }) {
                     <Button component={Link} href={'/admin/partners/' + element._id} size='xs'>Ver socio</Button>
                 </Table.Td>
             </Table.Tr>
-            {expanded && <Table.Tr>
+            {element.cosaspendientes || element.observaciones && expanded && <Table.Tr>
                 <Table.Td colSpan={12}>
-                    Hola mundooooo
+                    <Stack>
+                        {element.observaciones && <Alert title="Observaciones">
+                            {element.observaciones}
+                        </Alert>}
+                        {element.cosaspendientes && <Alert title="Cosas pendientes">
+                            {element.cosaspendientes}
+                        </Alert>}
+                    </Stack>
                 </Table.Td>
             </Table.Tr>}
         </>
