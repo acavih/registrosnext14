@@ -24,13 +24,13 @@ export default function PartnersPage({ partners, s = '' }) {
                     <Text size="lg">Listado de socios</Text>
                     <AddPartnerForm />
                 </Box>
-                <Grid>
+                {/* <Grid>
                     <Grid.Col span={{base: 12, lg: 3}} >
                         <Link href="http://google.es" target="_blank">
                             <Stat stat={{title: 'Miembros con cosas pendientes', value: 80}} />
                         </Link>
                     </Grid.Col>
-                </Grid>
+                </Grid> */}
                 <TextInput placeholder="Introduzca aquí el texto de su busqueda"
                     label={"Buscar socio"} value={value} onChange={(e) => setValue(e.target.value)} />
             </Card>
