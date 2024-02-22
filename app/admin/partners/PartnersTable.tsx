@@ -48,7 +48,7 @@ function PartnerRow({ element }) {
                     <Button component={Link} href={'/admin/partners/' + element._id} size='xs'>Ver socio</Button>
                 </Table.Td>
             </Table.Tr>
-            {element.cosaspendientes || element.observaciones && expanded && <Table.Tr>
+            {element.cosaspendientes?.length > 0 || element.observaciones?.length > 0 && expanded && <Table.Tr>
                 <Table.Td colSpan={12}>
                     <Stack>
                         {element.observaciones && <Alert title="Observaciones">
