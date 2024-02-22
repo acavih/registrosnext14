@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import UserModel from '@/db/models/User'
 import bcryptjs from 'bcryptjs'
+import dbQuery from "@/db/dbQuery"
 
 /**
  * @type {import('next-auth').AuthOptions}
@@ -16,7 +17,9 @@ export const authOptions = {
             async authorize(credentials, req) {
                 console.log(credentials)
                 if (!credentials) return null
-                const user = await UserModel.findOne({user: credentials!.username})
+                const user = await dbQuery(async () => {
+                    return await UserModel.findOne({user: credentials!.username})
+                })
                 if (!user) return null
                 const matchPassword = await bcryptjs.compare(credentials!.password, user.password!)
                 if (!matchPassword) return null
