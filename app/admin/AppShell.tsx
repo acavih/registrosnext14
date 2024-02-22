@@ -4,6 +4,7 @@ import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link'
 import LogoutButton from './LogoutButton'
 import { IconMenu2 } from "@tabler/icons-react";
+import { CiMenuBurger } from "react-icons/ci";
 
 export function CollapseDesktop({children}) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
@@ -23,8 +24,8 @@ export function CollapseDesktop({children}) {
         <Group h="100%" px="md">
           <Flex justify={'space-between'} style={{width: '100%'}}>
             <Group style={{flexGrow: 1}}>
-              <ActionIcon variant='transparent' onClick={toggleMobile} color='black' hiddenFrom="sm" size="sm" ><IconMenu2 /></ActionIcon>
-              <ActionIcon variant='transparent' onClick={toggleDesktop} color='black' visibleFrom="sm" size="sm" ><IconMenu2 /></ActionIcon>
+              <ActionIcon variant='transparent' onClick={toggleMobile} color='black' hiddenFrom="sm" size="sm" ><CiMenuBurger /></ActionIcon>
+              <ActionIcon variant='transparent' onClick={toggleDesktop} color='black' visibleFrom="sm" size="sm" ><CiMenuBurger /></ActionIcon>
               <Text>Registros</Text>
             </Group>
             <Group>
