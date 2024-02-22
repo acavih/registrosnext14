@@ -6,6 +6,7 @@ import { ColorSchemeScript, Container, MantineProvider } from '@mantine/core';
 import { getServerSession } from 'next-auth';
 import SessionProvider from './SessionProvider';
 import { theme } from './theme';
+import TRPCProvider from './_trpc/TRPCProvider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +34,9 @@ export default async function RootLayout({
         <MantineProvider theme={theme}>
           <Container fluid>
             <SessionProvider session={session}>
+              <TRPCProvider>
                 {children}
+              </TRPCProvider>
             </SessionProvider>
           </Container>
         </MantineProvider>

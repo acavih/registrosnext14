@@ -1,4 +1,5 @@
 "use client"
+import { trpc } from '@/app/_trpc/client';
 import {
     Button,
     Container,
@@ -10,6 +11,7 @@ import {
 import { useForm } from '@mantine/form';
 
 export function LoginForm() {
+    const todos = trpc.getTodos.useQuery()
     const { getInputProps, onSubmit,  } = useForm({
         initialValues: {
             username: '',
@@ -24,6 +26,7 @@ export function LoginForm() {
             </Title>
 
             <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                <p>{JSON.stringify(todos.data)}</p>
                 <form onSubmit={onSubmit(values => {
                     console.log(values)
                 })}>
