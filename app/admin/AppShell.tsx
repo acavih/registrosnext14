@@ -3,10 +3,11 @@ import { ActionIcon, Anchor, AppShell, Burger, Button, Flex, Group, NavLink, Ske
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link'
 import LogoutButton from './LogoutButton'
-import { IconMenu2 } from "@tabler/icons-react";
 import { CiMenuBurger } from "react-icons/ci";
+import { usePathname } from 'next/navigation';
 
 export function CollapseDesktop({children}) {
+  const pathName = usePathname()
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
@@ -38,9 +39,9 @@ export function CollapseDesktop({children}) {
         <Title order={2}>Menú</Title>
         <Flex justify={'space-between'} direction={'column'} style={{height: '100%'}}>
           <div style={{flexGrow: 1}}>
-            <NavLink variant='filled' component={Link} href="/admin/partners" label="Socios" />
-            <NavLink variant='filled' component={Link} href="/admin/resources/nacionalidads" label="Recursos" />
-            <NavLink variant='filled' component={Link} href="/admin/stats" label="Estadísticas" />
+            <NavLink active={pathName.includes('partners')} variant={pathName === '/admin/partners' ? 'filled' : 'light'} component={Link} href="/admin/partners" label="Socios" />
+            <NavLink active={pathName.includes('resources')} variant={'light'} component={Link} href="/admin/resources/nacionalidads" label="Recursos" />
+            <NavLink active={pathName.includes('stats')} variant={'filled'} component={Link} href="/admin/stats" label="Estadísticas" />
           </div>
         </Flex>
       </AppShell.Navbar>
