@@ -40,6 +40,7 @@ export function CollapseDesktop({children}) {
           <div style={{flexGrow: 1}}>
             <NavLink variant='filled' component={Link} href="/admin/partners" label="Socios" />
             <NavLink variant='filled' component={Link} href="/admin/resources/nacionalidads" label="Recursos" />
+            <NavLink variant='filled' component={Link} href="/admin/stats" label="Estadísticas" />
           </div>
         </Flex>
       </AppShell.Navbar>
