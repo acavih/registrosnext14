@@ -2,9 +2,31 @@
 import _ from 'lodash'
 import BarChart from './BarChart';
 import { Button, Flex, Grid, Group, Tabs, Title } from '@mantine/core';
+import { DateTimeInput } from '@/components/DateTimeInput';
+import { useState } from 'react';
+import { trpc } from '@/app/_trpc/client';
+
+const currentYear = new Date().getFullYear()
+
+const df = currentYear + '-01-01'
+const dt = currentYear + '-12-31'
+
+export default function StatsPage ({}) {
+    const [dateFrom, setDateFrom] = useState(new Date(df))
+    const [dateTo, setDateTo] = useState(new Date(dt))
+
+    const {data: {attentions}} = trpc.getAttentionsData.useQuery({
+        df: dateFrom.toISOString(),
+        dt: dateTo.toISOString(),
+    }, {
+        initialData: {
+            attentions: []
+        }
+    })
+
+    // const [attentions, setAttentions] = useState(attentionsRaw)
 
 
-export default function StatsPage ({attentions}) {
     const {socios, chartsPartner, chartsAttentions} = useStatsData(attentions)
 
     return (
@@ -13,9 +35,17 @@ export default function StatsPage ({attentions}) {
                 <Title order={3}>Estadísticas</Title>
                 <Group>
                     <Button>Socios: {socios.length}</Button>
-                    <Button>Atenciones: {socios.length}</Button>
+                    <Button>Atenciones: {attentions.length}</Button>
                 </Group>
             </Flex>
+            <Grid>
+                <Grid.Col span={{lg: 3}}>
+                    <DateTimeInput value={dateFrom} onChange={setDateFrom} label="Fecha desde" />
+                </Grid.Col>
+                <Grid.Col span={{lg: 3}}>
+                    <DateTimeInput value={dateTo} onChange={setDateTo} label="Fecha hasta" />
+                </Grid.Col>
+            </Grid>
             <Tabs defaultValue={'Socios'}>
                 <Tabs.List>
                     <Tabs.Tab value='Socios'>Socios</Tabs.Tab>
